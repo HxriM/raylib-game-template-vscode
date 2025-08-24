@@ -6,6 +6,9 @@ include(FetchContent)
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(CMAKE_CXX_STANDARD 20)
+cmake_policy(SET CMP0155 OLD) # Disable C++ modules support
+
 # Dependencies
 set(RAYLIB_VERSION 5.5)
 
@@ -42,8 +45,8 @@ endif()
 target_link_libraries(${PROJECT_NAME} raylib)
 # Other libs from Makefile -lraylib -lopengl32 -lgdi32 -lwinmm -lcomdlg32 -lole32
 
-file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS src/*.c)
-file(GLOB_RECURSE HEADER_FILES CONFIGURE_DEPENDS src/*.h)
+file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS src/*.cpp)
+file(GLOB_RECURSE HEADER_FILES CONFIGURE_DEPENDS src/Window.h)
 
 target_sources(${PROJECT_NAME} PRIVATE ${SOURCE_FILES} ${HEADER_FILES})
 
@@ -67,6 +70,6 @@ if ("${PLATFORM}" STREQUAL "Web")
     # --source-map-base          # allow debugging in browser with source map
     # --shell-file shell.html    # define a custom shell .html and output extension
     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
-    target_link_options(${PROJECT_NAME} PUBLIC -sUSE_GLFW=3 PUBLIC --preload-file resources)
-    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-sEXPORTED_RUNTIME_METHODS=[HEAPF32,ccall,requestFullscreen,cwrap]  --shell-file resources/minshell.html")
+    target_link_options(${PROJECT_NAME} PUBLIC -sUSE_GLFW=3 PUBLIC --preload-file resources PUBLIC "--std=c++20")
+    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-sEXPORTED_RUNTIME_METHODS=[HEAPF32,ccall,requestFullscreen,cwrap] -sSTACK_SIZE=131072 --shell-file resources/minshell.html")
 endif()
