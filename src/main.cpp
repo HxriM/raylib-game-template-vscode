@@ -235,8 +235,8 @@ public:
 };
 struct ConfigOptions
 {
-  float screenWidth = 800;
-  float screenHeight = 450;
+  float screenWidth = 640;
+  float screenHeight = 360;
   float containerMarginX = 10;
   float containerMarginY = 10;
   float containerThick = 10;
@@ -260,12 +260,12 @@ void drawScore(const GameState &gameState, const ConfigOptions &config)
 void drawConfigScreen(ConfigOptions &config)
 {
   ::ClearBackground(DARKGRAY);
-  ::DrawText("CONFIG SCREEN", config.screenWidth / 2 - 100, 100, 30, WHITE);
-  ::DrawText("Press UP/DOWN to change Paddle Speed", config.screenWidth / 2 - 180, 200, 20, WHITE);
-  ::DrawText(TextFormat("Paddle Speed: %i", (int)config.paddleSpeed), config.screenWidth / 2 - 80, 250, 20, YELLOW);
-  ::DrawText("Press LEFT/RIGHT to change Ball Speed", config.screenWidth / 2 - 180, 280, 20, WHITE);
-  ::DrawText(TextFormat("Ball Speed: %i", (int)config.ballSpeed), config.screenWidth / 2 - 80, 300, 20, YELLOW);
-  ::DrawText("Press ENTER to start", config.screenWidth / 2 - 100, 350, 20, GREEN);
+  ::DrawText("CONFIG SCREEN", config.screenWidth / 2 - 100, 50, 30, WHITE);
+  ::DrawText("Press UP/DOWN to change Paddle Speed", config.screenWidth / 2 - 180, 100, 20, WHITE);
+  ::DrawText(TextFormat("Paddle Speed: %i", (int)config.paddleSpeed), config.screenWidth / 2 - 80, 150, 20, YELLOW);
+  ::DrawText("Press LEFT/RIGHT to change Ball Speed", config.screenWidth / 2 - 180, 200, 20, WHITE);
+  ::DrawText(TextFormat("Ball Speed: %i", (int)config.ballSpeed), config.screenWidth / 2 - 80, 250, 20, YELLOW);
+  ::DrawText("Press ENTER to start", config.screenWidth / 2 - 100, 300, 20, GREEN);
 }
 
 // Global instances
