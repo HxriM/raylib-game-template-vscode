@@ -1,0 +1,39 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Server and Open HTML",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "http.server",
+                "--directory",
+                "${command:cmake.buildDirectory}",
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Starts a Python HTTP server in the CMake build directory.",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Open HTML",
+            "type": "shell",
+            "command": "start",
+            "args": [
+                "http://localhost:8000/index.html"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Opens the default browser to the HTML file served by the server.",
+            "dependsOn": "Run Server and Open HTML",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}
